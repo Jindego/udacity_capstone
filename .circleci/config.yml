@@ -17,9 +17,6 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
-      - save_cache:
-          paths: [frontend/node_modules]
-          key: frontend-build
 
 
 workflows:
@@ -27,4 +24,4 @@ workflows:
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
+      - build-frontend
