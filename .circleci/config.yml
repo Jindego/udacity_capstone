@@ -20,7 +20,7 @@ jobs:
       - run:
           name: build image
           command: |
-            systemctl start docker
+            dockerd
             docker build -t webserver_smithcf .
             docker image ls
 
