@@ -1,0 +1,21 @@
+sudo docker run -dit --name jindego -p 8080:80 -v /home/smithcf/website/:/usr/local/apache2/htdocs/ httpd:2.4
+
+
+/home/smithcf/website/docker.html
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connors Website</title>
+<style>
+body {
+  background-color: #0390fc;
+}
+</style>
+</head>
+<body>
+    <h1 style="background-color:DodgerBlue;">Hi My name is connor</h1>
+</body>
+</html>
