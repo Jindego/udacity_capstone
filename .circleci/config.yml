@@ -28,6 +28,14 @@ jobs:
             docker build -t webserver_smithcf .
             docker image ls
 
+      - run:
+          name: push image
+          command: |
+            dockerpath="jindego/webserver_smithcf"
+            docker login -u "jindego" -p "$dockerpass"
+            docker tag capstoneProj jindego/webserver_smithcf
+            docker push jindego/webserver_smithcf
+            
 workflows:
   # Name the workflow "welcome"
   welcome:
