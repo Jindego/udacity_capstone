@@ -109,6 +109,10 @@ jobs:
             
 
 workflows:
+  lint:
+    jobs:
+      - docker/hadolint:
+          dockerfiles: .
   default:
     jobs:
       - build-frontend
