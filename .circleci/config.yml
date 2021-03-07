@@ -72,7 +72,7 @@ jobs:
       - run:
           name: Print versions
           command: |
-            # Get versions
+            # Get versions .
             awsversion=$(aws --version)
             kubectlclientversion=$(kubectl version --client)
             eksctlversion=$(eksctl version)
