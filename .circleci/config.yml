@@ -101,9 +101,6 @@ jobs:
       - run:
           name: update kube cluster
           command: |
-            # workaround as hanging when running as a command
-            export TERM=xterm
-
             # update cluster with yaml
             aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name UdacityCapstone
             kubectl config get-contexts
