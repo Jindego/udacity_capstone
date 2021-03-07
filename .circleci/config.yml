@@ -108,7 +108,7 @@ jobs:
             aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name UdacityCapstone
             kubectl config get-contexts
             kubectl apply -f kube.yml
-            kubectl rollout restart deployment/capstone-webserver
+            kubectl rollout restart deployment/webserver-smithcf
             
 
 workflows:
