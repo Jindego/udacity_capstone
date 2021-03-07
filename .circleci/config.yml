@@ -99,6 +99,16 @@ jobs:
             chmod 755 checkForEks.sh
             ./checkForEks.sh
 
+      - run:
+          name: update kube cluster
+          command: |
+            # workaround as hanging when running as a command
+            export TERM=xterm
+            nohup aws cloudformation list-exports --query "Exports[?Name=='eksctl-UdacityCapstone-cluster::ARN'].Value" --no-paginate --output text > list2.txt
+
+            # cat file
+            cat list2.txt
+
 
 workflows:
   default:

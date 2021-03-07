@@ -1,5 +1,4 @@
 checkForEKS=$(grep -i eksctl-UdacityCapstone-cluster list.txt | wc -l)
-eksctl version
 if [[ $checkForEKS -gt 0 ]]
     then 
     echo "we have $checkForEKS results, Skipping cluster creation"
