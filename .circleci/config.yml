@@ -104,7 +104,7 @@ jobs:
             # workaround as hanging when running as a command
             export TERM=xterm
 
-            # set contexts
+            # set contexts .
             aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name UdacityCapstone
             kubectl config get-contexts
             kubectl get pods
