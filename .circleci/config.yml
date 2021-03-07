@@ -49,6 +49,7 @@ jobs:
 
 
 workflows:
+  default:
     jobs:
       - build-frontend
       - deploy-change-to-kube:
