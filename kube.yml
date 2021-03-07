@@ -21,7 +21,7 @@ spec:
         image: jindego/webserver_smithcf
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 
 ---
 apiVersion: v1
@@ -35,6 +35,6 @@ spec:
     app: webserver-smithcf
   type: LoadBalancer
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 80
+      targetPort: 80
       protocol: TCP
