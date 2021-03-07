@@ -7,6 +7,11 @@ spec:
     matchLabels:
       app: webserver-smithcf
   replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 33%
+      maxUnavailable: 33%
+    type: RollingUpdate
   template:
     metadata:
       labels:
