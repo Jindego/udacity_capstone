@@ -97,6 +97,7 @@ jobs:
             nohup aws cloudformation list-exports > list.txt
 
             # check if eks stack already exists
+            chmod 755 checkForEks.sh
             ./checkForEks.sh
 
 
