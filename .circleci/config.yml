@@ -85,9 +85,10 @@ jobs:
             echo $eksctlversion
 
       - run:
-          name: AWS CLI Test
+          name: build kube cluster
           command: |
-            eksctl create cluster --name UdacityCapstone --version 1.19 --region $AWS_DEFAULT_REGION --nodegroup-name UdacityCapstone --node-type t3.nano --nodes-min 2 --nodes-max 4 --managed
+            TERM=xterm-color
+            # eksctl create cluster --name UdacityCapstone --version 1.19 --region $AWS_DEFAULT_REGION --nodegroup-name UdacityCapstone --node-type t3.nano --nodes-min 2 --nodes-max 4 --managed
             aws cloudformation list-exports
 
 workflows:
