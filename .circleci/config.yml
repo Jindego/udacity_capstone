@@ -1,4 +1,3 @@
-
 version: 2.1
 
 jobs:
@@ -13,13 +12,17 @@ jobs:
             # install sudo package 
             apt-get -y -qq update
             apt-get -y install sudo
-            # install curl and docker
+
+            # install dependencies to install docker
             sudo apt-get -y install curl gnupg2 software-properties-common
+
+            # Install Docker
             curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
             sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
             sudo apt-get update
             sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
+      # Required for using docker commands in CircleCI
       - setup_remote_docker:
           version: 19.03.13
           docker_layer_caching: false
@@ -46,8 +49,7 @@ jobs:
 
 
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
     jobs:
       - build-frontend
+      - deploy-change-to-kube:
+            requires: [build-frontend]
