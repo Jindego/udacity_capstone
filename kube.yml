@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: capstone-deployment
+  name: webserver_smithcf
 spec:
   selector:
     matchLabels:
-      app: capstone-webserver
+      app: webserver_smithcf
   replicas: 2
   template:
     metadata:
       labels:
-        app: capstone-webserver
+        app: webserver_smithcf
     spec:
       containers:
-      - name: capstone-webserver
+      - name: webserver_smithcf
         image: jindego/webserver_smithcf
         ports:
         - containerPort: 80
