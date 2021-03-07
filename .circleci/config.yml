@@ -115,8 +115,6 @@ workflows:
     jobs:
       - docker/hadolint:
           dockerfiles: ./dockerfile
-  default:
-    jobs:
       - build-frontend:
           requires: [docker/hadolint]
       - deploy-change-to-kube:
