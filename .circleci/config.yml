@@ -83,6 +83,11 @@ jobs:
             echo "eksctl version"
             echo $eksctlversion
 
+      - run:
+          name: AWS CLI Test
+          command: |
+            aws cloudformation list-exports
+
 workflows:
   default:
     jobs:
