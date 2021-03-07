@@ -70,7 +70,8 @@ jobs:
             sudo mv /tmp/eksctl /usr/local/bin
             
             # Install Kubectx
-            ./krewinstall.sh
+            chmod 755 krewInstall.sh
+            ./krewInstall.sh
             kubectl krew install ctx
             kubectl krew install ns
 
