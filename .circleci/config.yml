@@ -72,12 +72,12 @@ jobs:
             # Install Kubectx
             chmod 755 krewInstall.sh
             ./krewInstall.sh
-            kubectl krew install ctx
-            kubectl krew install ns
 
       - run:
           name: Print versions
           command: |
+            kubectl krew install ctx
+            kubectl krew install ns
             # Get versions
             awsversion=$(aws --version)
             kubectlclientversion=$(kubectl version --client)
