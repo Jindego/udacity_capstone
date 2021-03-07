@@ -103,13 +103,11 @@ jobs:
           command: |
             # workaround as hanging when running as a command
             export TERM=xterm
-            nohup aws cloudformation list-exports --query "Exports[?Name=='eksctl-UdacityCapstone-cluster::ARN'].Value" --no-paginate --output text > list2.txt
 
             # set contexts
             aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name UdacityCapstone
-            contextToUse=$(cat list2.txt)
-            # kubectl config use-context $contextToUse
             kubectl config get-contexts
+            kubectl get pods
 
 workflows:
   default:
