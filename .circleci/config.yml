@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   docker: circleci/docker@1.5.0
+  anchore-engine: anchore/anchore-engine@1.0.0
 
 jobs:
   build-frontend:
@@ -117,5 +118,9 @@ workflows:
           dockerfiles: ./dockerfile
       - build-frontend:
           requires: [docker/hadolint]
-      - deploy-change-to-kube:
+      - anchore/image_scan:
           requires: [build-frontend]
+          image_name: jindego/webserver_smithcf
+          timeout: '300'
+      #- deploy-change-to-kube:
+      #   requires: [build-frontend]
