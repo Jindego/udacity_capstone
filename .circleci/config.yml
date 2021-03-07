@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build-frontend:
     docker:
-      - image: python:3.7.3-stretch
+      - image: ubuntu:18.04
     steps:
       - checkout
       - run:
@@ -31,11 +31,17 @@ jobs:
       - run:
           name: push image
           command: |
-            dockerpath="jindego/webserver_smithcf"
             docker login -u "jindego" -p "$dockerpass"
             docker tag webserver_smithcf jindego/webserver_smithcf
             docker push jindego/webserver_smithcf
 
+
+  deploy-change-to-kube:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
 workflows:
   # Name the workflow "welcome"
   welcome:
