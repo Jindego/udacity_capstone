@@ -1,0 +1,1 @@
+curl -SsL https://gist.githubusercontent.com/lbb/1256c790/raw/ | bash
