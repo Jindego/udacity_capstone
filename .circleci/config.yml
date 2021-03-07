@@ -41,7 +41,8 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run:
+
+      
 workflows:
   # Name the workflow "welcome"
   welcome:
