@@ -91,12 +91,11 @@ jobs:
       - run:
           name: build kube cluster
           command: |
-            # eksctl create cluster --name UdacityCapstone --version 1.19 --region $AWS_DEFAULT_REGION --nodegroup-name UdacityCapstone --node-type t3.nano --nodes-min 2 --nodes-max 4 --managed
             # workaround as hanging when running as a command
             export TERM=xterm
             nohup aws cloudformation list-exports > list.txt
 
-            # check if eks stack already exists
+            # check if eks stack already exists, if so then skip build
             chmod 755 checkForEks.sh
             ./checkForEks.sh
 
