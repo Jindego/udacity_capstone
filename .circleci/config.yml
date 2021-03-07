@@ -114,6 +114,6 @@ jobs:
 workflows:
   default:
     jobs:
-      # - build-frontend
+      - build-frontend
       - deploy-change-to-kube
-            # requires: [build-frontend]
+        requires: [build-frontend]
