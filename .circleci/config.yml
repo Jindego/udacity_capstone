@@ -108,7 +108,7 @@ jobs:
 
             # cat file
             cat list2.txt
-
+            kubectl config current-context
 
 workflows:
   default:
