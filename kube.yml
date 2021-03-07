@@ -15,5 +15,6 @@ spec:
       containers:
       - name: webserver-smithcf
         image: jindego/webserver_smithcf
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
