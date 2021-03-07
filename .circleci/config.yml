@@ -101,8 +101,7 @@ jobs:
       - run:
           name: update kube cluster
           command: |
-            kubectl config use-context foobar
-            kubectl config current-context
+            kubectl config get-contexts
 
 workflows:
   default:
