@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webserver_smithcf
+  name: webserver-smithcf
 spec:
   selector:
     matchLabels:
-      app: webserver_smithcf
+      app: webserver-smithcf
   replicas: 2
   template:
     metadata:
       labels:
-        app: webserver_smithcf
+        app: webserver-smithcf
     spec:
       containers:
-      - name: webserver_smithcf
+      - name: webserver-smithcf
         image: jindego/webserver_smithcf
         ports:
         - containerPort: 80
