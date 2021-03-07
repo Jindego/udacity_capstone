@@ -91,8 +91,11 @@ jobs:
       - run:
           name: build kube cluster
           command: |
+            export TERM=xterm
             # eksctl create cluster --name UdacityCapstone --version 1.19 --region $AWS_DEFAULT_REGION --nodegroup-name UdacityCapstone --node-type t3.nano --nodes-min 2 --nodes-max 4 --managed
-            aws cloudformation list-exports
+            nohup aws cloudformation list-exports > list.txt
+            cat list.txt
+
 
 workflows:
   default:
