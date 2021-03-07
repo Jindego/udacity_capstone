@@ -104,10 +104,12 @@ jobs:
             # workaround as hanging when running as a command
             export TERM=xterm
 
-            # set contexts .
+            # update cluster with yaml
             aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name UdacityCapstone
             kubectl config get-contexts
-            kubectl get pods
+            kubectl apply -f kube.yml
+            kubectl rollout restart deployment/capstone-webserver
+            
 
 workflows:
   default:
