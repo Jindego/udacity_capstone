@@ -121,9 +121,5 @@ workflows:
       - anchore/image_scan:
           requires: [build-frontend]
           image_name: 'jindego/webserver_smithcf'
-          private_registry: true
-          registry_name: docker.io
-          registry_pass: $dockerpass
-          registry_user: jindego
       #- deploy-change-to-kube:
       #   requires: [build-frontend]
