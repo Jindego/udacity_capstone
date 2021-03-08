@@ -25,7 +25,6 @@ This Project automates the deployment of an updated index.html file using docker
     DOCKER_LOGIN - dockerhub username
     DOCKER_PASSWORD - dockerhub password
     SNYK_TOKEN - api code for snyk scan
-    
     ```
 * Run and this will create infrastructure and deploy index.html
 

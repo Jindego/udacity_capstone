@@ -1,3 +1,4 @@
+sleep 10
 webAdress=$(kubectl get svc | grep -i webserver-loadbalancer | awk -F ' ' '{print $4}')
 curl $webAdress > newhtml.txt
 dos2unix newhtml.txt index.html
