@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   docker: circleci/docker@1.5.0
   snyk: snyk/snyk@0.0.13
+  kubernetes: circleci/kubernetes@0.11.2
 
 jobs:
   snyk-scan:
@@ -16,6 +17,19 @@ jobs:
       - snyk/scan:
           docker-image-name: $IMAGE_NAME
           fail-on-issues: false
+          
+
+  create-update:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - kubernetes/install-kubectl
+      - kubernetes/create-or-update-resource:
+          get-rollout-status: true
+          resource-file-path: kube.yaml
+          resource-name: jindego/webserver_smithcf
+          show-kubectl-command: true
 
   deploy-change-to-kube:
     docker:
@@ -89,11 +103,11 @@ workflows:
     jobs:
      # - docker/hadolint:
      #     dockerfiles: ./dockerfile
-      - docker/publish:
-          image: jindego/webserver_smithcf
-          tag: latest
-
-      #- build-frontend:.
+     # - docker/publish:
+     #     image: jindego/webserver_smithcf
+    #    tag: latest
+      - create-update
+      #- build-frontend:.S
       #    requires: [docker/hadolint]
       #- snyk-scan:
       #    requires: [build-frontend]
