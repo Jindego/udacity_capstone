@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   docker: circleci/docker@1.5.0
-  anchore: anchore/anchore-engine@1.6.0
+  snyk: snyk/snyk@0.0.13
 
 jobs:
   build-frontend:
@@ -43,6 +43,17 @@ jobs:
             docker tag webserver_smithcf jindego/webserver_smithcf
             docker push jindego/webserver_smithcf
 
+  snyk-scan:
+    docker:
+      - image: 'circleci/buildpack-deps:stretch'
+    environment:
+      IMAGE_NAME: jindego/webserver_smithcf
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker build -t $IMAGE_NAME .
+      - snyk/scan:
+          docker-image-name: $IMAGE_NAME
 
   deploy-change-to-kube:
     docker:
@@ -118,8 +129,7 @@ workflows:
           dockerfiles: ./dockerfile
       - build-frontend:
           requires: [docker/hadolint]
-      - anchore/image_scan:
+      - snyk-scan:
           requires: [build-frontend]
-          image_name: 'jindego/webserver_smithcf'
       #- deploy-change-to-kube:
       #   requires: [build-frontend]
