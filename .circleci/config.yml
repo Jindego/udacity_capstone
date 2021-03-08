@@ -103,7 +103,7 @@ workflows:
   default:
     jobs:
      - docker/hadolint:
-        dockerfiles: ./dockerfile
+        dockerfiles: ./Dockerfile
      - docker/publish:
         requires: [docker/hadolint]
         image: jindego/webserver_smithcf
