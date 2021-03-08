@@ -131,10 +131,10 @@ workflows:
       - docker/publish:
           requires: [docker/hadolint]
           image: jindego/webserver_smithcf
-          
+
       #- build-frontend:
       #    requires: [docker/hadolint]
-      - snyk-scan:
-          requires: [build-frontend]
-      - deploy-change-to-kube:
-          requires: [snyk-scan]
+      #- snyk-scan:
+      #    requires: [build-frontend]
+     # - deploy-change-to-kube:
+       #   requires: [snyk-scan]
