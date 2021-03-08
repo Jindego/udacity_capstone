@@ -18,19 +18,6 @@ jobs:
           docker-image-name: $IMAGE_NAME
           fail-on-issues: false
           
-
-  create-update:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
-      - checkout
-      - kubernetes/install-kubectl
-      - kubernetes/create-or-update-resource:
-          get-rollout-status: true
-          resource-file-path: kube.yaml
-          resource-name: jindego/webserver_smithcf
-          show-kubectl-command: true
-
   deploy-change-to-kube:
     docker:
       - image: ubuntu:18.04
@@ -101,15 +88,12 @@ jobs:
 workflows:
   lint:
     jobs:
-     # - docker/hadolint:
-     #     dockerfiles: ./dockerfile
-     # - docker/publish:
-     #     image: jindego/webserver_smithcf
-    #    tag: latest
-      - create-update
-      #- build-frontend:.S
-      #    requires: [docker/hadolint]
-      #- snyk-scan:
-      #    requires: [build-frontend]
-     # - deploy-change-to-kube:
-       #   requires: [snyk-scan]
+     - docker/hadolint:
+        dockerfiles: ./dockerfile
+     - docker/publish:
+        image: jindego/webserver_smithcf
+        tag: latest
+      - snyk-scan:
+        requires: [docker/publish]
+     - deploy-change-to-kube:
+        requires: [snyk-scan]
