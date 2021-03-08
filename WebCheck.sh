@@ -5,6 +5,7 @@ checkForDiff=$(cmp newhtml.txt index.html | wc -l)
 if [[ checkForDiff -gt 0 ]]
 then
     echo "Live website differs from updated website. exiting...."
+    diff newhtml.txt index.html
     exit 1
 else
     echo "Live website matches the updated website. Great!"
