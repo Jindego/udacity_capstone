@@ -131,7 +131,7 @@ workflows:
       - docker/publish:
           image: jindego/webserver_smithcf
 
-      #- build-frontend:
+      #- build-frontend:.
       #    requires: [docker/hadolint]
       #- snyk-scan:
       #    requires: [build-frontend]
