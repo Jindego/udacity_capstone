@@ -69,7 +69,7 @@ jobs:
       - run:
           name: test website
           command: |
-            ./webcheck.sh
+            ./WebCheck.sh
                      
 workflows:
   default:
