@@ -54,6 +54,7 @@ jobs:
       - run: docker build -t $IMAGE_NAME .
       - snyk/scan:
           docker-image-name: $IMAGE_NAME
+          fail-on-issues: false
 
   deploy-change-to-kube:
     docker:
