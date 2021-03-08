@@ -128,8 +128,7 @@ workflows:
     jobs:
      # - docker/hadolint:
      #     dockerfiles: ./dockerfile
-      - docker/publish
-      #    requires: [docker/hadolint]
+      - docker/publish:
           image: jindego/webserver_smithcf
 
       #- build-frontend:
