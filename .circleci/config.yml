@@ -126,13 +126,11 @@ jobs:
 workflows:
   lint:
     jobs:
-      - docker/hadolint:
-          dockerfiles: ./dockerfile
-      - docker/publish:
-          requires: [docker/hadolint]
+     # - docker/hadolint:
+     #     dockerfiles: ./dockerfile
+      - docker/publish
+      #    requires: [docker/hadolint]
           image: jindego/webserver_smithcf
-          docker-username: jindego
-          docker-password: dockerpass
 
       #- build-frontend:
       #    requires: [docker/hadolint]
