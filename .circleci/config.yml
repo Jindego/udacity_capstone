@@ -4,45 +4,6 @@ orbs:
   snyk: snyk/snyk@0.0.13
 
 jobs:
-  build-frontend:
-    docker:
-      - image: ubuntu:18.04
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: |
-            # install sudo package 
-            apt-get -y -qq update
-            apt-get -y install sudo
-
-            # install dependencies to install docker
-            sudo apt-get -y install curl gnupg2 software-properties-common
-
-            # Install Docker
-            curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
-            sudo apt-get update
-            sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-
-      # Required for using docker commands in CircleCI
-      - setup_remote_docker:
-          version: 19.03.13
-          docker_layer_caching: false
-
-      - run:
-          name: build image
-          command: |
-            docker build -t webserver_smithcf .
-            docker image ls
-
-      - run:
-          name: push image
-          command: |
-            docker login -u "jindego" -p "$dockerpass"
-            docker tag webserver_smithcf jindego/webserver_smithcf
-            docker push jindego/webserver_smithcf
-
   snyk-scan:
     docker:
       - image: 'circleci/buildpack-deps:stretch'
