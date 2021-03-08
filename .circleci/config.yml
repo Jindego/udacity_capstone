@@ -132,7 +132,7 @@ workflows:
           requires: [docker/hadolint]
           image: jindego/webserver_smithcf
           docker-username: jindego
-          docker-password: $dockerpass
+          docker-password: dockerpass
 
       #- build-frontend:
       #    requires: [docker/hadolint]
