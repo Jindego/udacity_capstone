@@ -47,24 +47,6 @@ jobs:
             sudo mv /tmp/eksctl /usr/local/bin
 
       - run:
-          name: Print versions
-          command: |
-            # Get versions .
-            awsversion=$(aws --version)
-            kubectlclientversion=$(kubectl version --client)
-            eksctlversion=$(eksctl version)
-
-            # Print versions of installed utils
-            echo "AWS CLI version"
-            echo $awsversion
-            echo ""
-            echo "kubectl version"
-            echo $kubectlclientversion
-            echo ""
-            echo "eksctl version"
-            echo $eksctlversion
-
-      - run:
           name: build kube cluster
           command: |
             # workaround as hanging when running as a command
@@ -80,20 +62,19 @@ jobs:
           command: |
             # update cluster with yaml
             aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name UdacityCapstone
-            kubectl config get-contexts
             kubectl apply -f kube.yml
             kubectl rollout restart deployment/webserver-smithcf
             
 
 workflows:
-  lint:
+  default:
     jobs:
      - docker/hadolint:
         dockerfiles: ./dockerfile
      - docker/publish:
         image: jindego/webserver_smithcf
         tag: latest
-      - snyk-scan:
+     - snyk-scan:
         requires: [docker/publish]
      - deploy-change-to-kube:
         requires: [snyk-scan]
