@@ -85,4 +85,3 @@ workflows:
         requires: [docker/publish]
      - deploy-change-to-kube:
         requires: [snyk-scan]
-     #- test-website-available
