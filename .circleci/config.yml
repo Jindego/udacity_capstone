@@ -130,6 +130,7 @@ workflows:
      #     dockerfiles: ./dockerfile
       - docker/publish:
           image: jindego/webserver_smithcf
+          tag: latest
 
       #- build-frontend:.
       #    requires: [docker/hadolint]
